@@ -9,3 +9,8 @@ rust:
 
 on:
   tags: true
+
+script:
+  - cargo build
+  - cargo test
+  - ls -l target/debug
