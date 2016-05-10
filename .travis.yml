@@ -5,7 +5,7 @@ matrix:
     - os: osx
       env: RELEASE_LIB=target/release/libtest_gh_release.dylib
   exclude:
-    - env: RELEASE_LIB=""
+    - env: RELEASE_LIB=
 
 language: rust
 
