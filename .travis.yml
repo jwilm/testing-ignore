@@ -1,3 +1,4 @@
+compiler: gcc
 matrix:
   include:
     - os: linux
