@@ -4,6 +4,8 @@ matrix:
       env: RELEASE_LIB=target/release/libtest_gh_release.so
     - os: osx
       env: RELEASE_LIB=target/release/libtest_gh_release.dylib
+  exclude:
+    - compiler: gcc
 
 language: rust
 
