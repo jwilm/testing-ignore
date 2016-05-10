@@ -3,4 +3,8 @@ name = "test-gh-release"
 version = "0.0.1"
 authors = ["Joe Wilm <joe@jwilm.com>"]
 
+[lib]
+crate-type = ["dylib"]
+
 [dependencies]
+
