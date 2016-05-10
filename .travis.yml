@@ -1,11 +1,6 @@
-matrix:
-  include:
-    - os: linux
-      env: RELEASE_LIB=target/release/libtest_gh_release.so
-    - os: osx
-      env: RELEASE_LIB=target/release/libtest_gh_release.dylib
-  exclude:
-    - env: RELEASE_LIB=
+os:
+  - linux
+  - osx
 
 language: rust
 
@@ -14,6 +9,8 @@ rust: nightly-2016-04-29
 script:
   - cargo build
   - cargo test
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export RELEASE_LIB=target/release/libtest_gh_release.dylib; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export RELEASE_LIB=target/release/libtest_gh_release.so; fi
   - if [[ "$TRAVIS_TAG" != "" ]]; then cargo build --release; fi
 
 deploy:
