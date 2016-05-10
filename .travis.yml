@@ -4,9 +4,6 @@ matrix:
       env: RELEASE_LIB=target/debug/libtest_gh_release.so
     - os: osx
       env: RELEASE_LIB=target/debug/libtest_gh_release.dylib
-os:
-  - osx
-  - linux
 
 language: rust
 
