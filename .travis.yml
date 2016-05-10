@@ -1,4 +1,3 @@
-compiler: gcc
 matrix:
   include:
     - os: linux
@@ -6,7 +5,7 @@ matrix:
     - os: osx
       env: RELEASE_LIB=target/release/libtest_gh_release.dylib
   exclude:
-    - compiler: gcc
+    - env: RELEASE_LIB=""
 
 language: rust
 
