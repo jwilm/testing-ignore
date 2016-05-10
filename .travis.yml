@@ -1,0 +1,11 @@
+os:
+  - osx
+  - linux
+
+language: rust
+
+rust:
+  - nightly-2016-04-28
+
+on:
+  tags: true
