@@ -1,25 +1,24 @@
 matrix:
   include:
     - os: linux
-      env: RELEASE_LIB=target/debug/libtest_gh_release.so
+      env: RELEASE_LIB=target/release/libtest_gh_release.so
     - os: osx
-      env: RELEASE_LIB=target/debug/libtest_gh_release.dylib
+      env: RELEASE_LIB=target/release/libtest_gh_release.dylib
 
 language: rust
 
-rust:
-- nightly-2016-04-29
+rust: nightly-2016-04-29
 
 script:
-  - echo "TRAVIS_TAG: $TRAVIS_TAG"
   - cargo build
   - cargo test
+  - if [[ "$TRAVIS_TAG" != "" ]]; then cargo build --release; fi
 
 deploy:
   provider: releases
   api_key:
     secure: bUWzraAu2yZCzaddIgzuWLWU+IrKl4MMloHRol4U78Y4TPUYGldNc9httRbWh11gOBTzlXhC47joT9syBmvqdhST/rWwZQyyC9aHd+jzkk9clF4s2rlZ6ooiUj1kxgoUPBFGKOZln2fde2Giggx/Uh66lUhSaHo90cWrM6mFoFPwHFXrBr1j53bx0ySFFXc88CH974xgPwVHDXnTS3VKnFDrRfyyi33VrGPnQKo85SkpKb9PppUlQu5pLooYAxpMg1AiegTyhtHfZEfvEqG4yAVRB8CHFhVCJ2RE/qzXidsJggWooSBRVMQKB7BZrmI/eJeDMWWTHCvtXVsTHNqPebPZh2MeKdNxpl0r2hl/29mY7jsYKLe5Z41tp0EkvIsx/HHXneuTnrgHqvTC2VnBpisT3c63qmmAUc6xTC4h5iH1hPNQJ0WW59GThysF5azx8ZxpHaVoYc688LCGjhiAuuSr6UaiSPpZecurkrNK3RRE5/36JBkg1266rIrZeseSePSfbtGWlUQUnOFRTrZO+0b8WzOCp+UpHeP73HRgUCayq9er75ueo4QgZBfOGwFfBOzLOhG3Dk73IMeYk7ItPURqV99/Q5Psk/V8MSw7mM327DYgldupEFZn6FGihAlSUK4yqbwmT49DVeMt6LF/BR4vaXAul3WWMq2pmfNAXH8=
-  file: "$RELEASE_LIB"
+  file: $RELEASE_LIB
   skip_cleanup: true
   on:
     repo: jwilm/testing-ignore
